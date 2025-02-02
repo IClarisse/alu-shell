@@ -1,2 +1,2 @@
 #!/bin/bash
-if [ "$(stat --format=%U hello)" = "guillaume" ] then sudo chown vincent hello fi
+test "$(stat --format=%U hello)" = "guillaume" -a ! -z "$(sudo chown vincent hello)"
