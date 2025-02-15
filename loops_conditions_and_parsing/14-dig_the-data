@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Dig Apache log data to group by IP and HTTP status code, then sort by occurrences
+
+# Specify the path to the log file
+LOG_FILE="/path/to/your/apache/logs/access.log"
+
+# Use awk to extract IP and HTTP status code, then sort and count occurrences
+awk '{print $1, $9}' "$LOG_FILE" | sort | uniq -c | sort -nr | awk '{print $1, $2, $3}'
