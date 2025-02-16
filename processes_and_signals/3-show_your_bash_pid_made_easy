@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2009
+
+for pid in /proc/[0-9]*/cmdline; do
+    if grep -q bash "$pid" 2>/dev/null; then
+        echo "$(basename $(dirname "$pid")) bash"
+    fi
+done
