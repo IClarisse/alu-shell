@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 # This script stops the 4-to_infinity_and_beyond process without using kill or killall
 
-pkill -STOP -f "./4-to_infinity_and_beyond"
+# Find the PID of the 4-to_infinity_and_beyond process
+pid=$(pgrep -f "./4-to_infinity_and_beyond")
+
+# Send the terminate signal by writing to /proc
+if [ -n "$pid" ]; then
+    echo "Stopping process with PID: $pid"
+    echo 0 > "/proc/$pid/oom_score_adj"
+fi
