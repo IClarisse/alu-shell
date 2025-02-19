@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -empty -exec echo {} \+ | tr -d './' | find . -type d -empty -exec echo {} \+ | tr -d './'
+find . -type f -empty -print -o -type d -empty -print
