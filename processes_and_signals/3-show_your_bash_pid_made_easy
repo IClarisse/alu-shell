@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-#This script lists all processes containing the word "bash"
+# This script lists all processes containing the word "bash"
 
 # Loop through all process directories in /proc
 for pid in /proc/[0-9]*; do
     # Extract the process ID
     pid_number="${pid##*/}"
 
-    # Get the process name from /proc/[PID]/comm
-    if [ -f "$pid/comm" ]; then
-        process_name=$(cat "$pid/comm")
+    # Read the process name safely using `cat`
+    if [[ -f "$pid/comm" ]]; then
+        read -r process_name < "$pid/comm"
 
         # Check if the process name contains "bash"
         if [[ "$process_name" == *bash* ]]; then
