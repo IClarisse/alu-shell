@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -c1 | paste -sd ""
+find . -type f -iname "*.gif" -exec sh -c 'echo "${1%.*}"' sh {} | sort -f
