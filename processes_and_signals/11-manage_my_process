@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-#This script will allow you to start and restart manage_process
+# This script will allow you to start, stop, and restart manage_my_process
 
-PROCESS_NAME="manage_my_process"
 PID_FILE="/var/run/my_process.pid"
 PROCESS_PATH="./manage_my_process"  # Update this if `manage_my_process` is in a different path
 
@@ -12,7 +11,7 @@ case "$1" in
         echo $! > "$PID_FILE"
         echo "manage_my_process started"
         ;;
-    
+
     stop)
         if [ -f "$PID_FILE" ]; then
             kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE"
@@ -21,7 +20,7 @@ case "$1" in
             echo "manage_my_process is not running"
         fi
         ;;
-    
+
     restart)
         if [ -f "$PID_FILE" ]; then
             kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE"
@@ -30,9 +29,9 @@ case "$1" in
         echo $! > "$PID_FILE"
         echo "manage_my_process restarted"
         ;;
-    
+
     *)
-        echo "Usage: manage_my_process {start|stop|restart}"
+        echo "Usage: $0 {start|stop|restart}"
         exit 1
         ;;
 esac
